@@ -110,8 +110,13 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation links, hidden on smaller displays -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-      <a class="mdl-navigation__link" href="">Mercury</a>
-      <a id="logOut" class="mdl-navigation__link" href="">Logout</a>
+ 
+      {{#if showLogin}}
+        
+      {{else}}
+      <a id="userName" class="mdl-navigation__link" href=""></a>
+      <a id="logOut" class="mdl-navigation__link nav-links" href="">Logout</a>
+      {{/if}}
           <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Your Title</span>
     </div>
@@ -146,29 +151,46 @@
 {{else}}
   <script>
 
- $.ajax({
-       url: 'https://vanbeektech.okta.com/api/v1/users/me/appLinks',
+
+var signIn = new OktaSignIn({
+  baseUrl: 'https://vanbeektech.okta.com',
+  logo: '/userLogin.png',
+  clientId: '0oa43ju51wQSUcS6b1t7',
+  redirectUri: 'http://localhost:3000/authorization-code/callback',
+  authParams: {
+// display: 'page',
+  responseType: 'code',
+  scopes: ['openid']
+  }
+});
+
+ signIn.session.get((response) => {
+      if (response.status !== 'INACTIVE') {
+        console.log(response.userId)
+        var userId = response.userId
+        $.ajax({
+       url: '/appLinks',
        type: 'GET',
        xhrFields: { withCredentials: true },
        dataType: 'json',
        headers: {
-       "Authorization": "SSWS 00gvA4Y25xrXIaCqURU3YDbIU4ycHV5rYS36HcPQ6v",
          "Content-Type": "application/json",
          "Accept": "application/json"},
-       data: {}
+       data: {userId: userId}
      }).done(function(d){
+      
             var appLinks = d
+      
             var arrayLength = appLinks.length
             for (var i = 0; i < arrayLength; i++) {
-                 $("#apssBody").append("<div class='mdl-card mdl-shadow--2dp demo-card-square'><div style='background-color: black; background: url(" + appLinks[i].logoUrl + "); background-repeat:no-repeat;;'class='mdl-card__title mdl-card--expand'><h5 class='mdl-card__title-text' style='color: #B38D53'>" + appLinks[i].label + "</h5></div><div class='mdl-card__supporting-text'><center><a href='" + appLinks[i].linkUrl + "' id='link1'><id='" + appLinks[i].label + "' button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab mdl-button--colored' ><i class='material-icons'>open_in_browser</i></button></a></center></div></div>")
+                 $("#apssBody").append("<div class='mdl-card mdl-shadow--2dp demo-card-square'><div style='background-color: black; background: url(" + appLinks[i].logoUrl + ");  background-position: center; background-repeat:no-repeat;;'class='mdl-card__title mdl-card--expand'><h5 class='mdl-card__title-text' style='color: #B38D53'>" + appLinks[i].label + "</h5></div><div class='mdl-card__supporting-text'><center><a href='" + appLinks[i].linkUrl + "' id='link1'><id='" + appLinks[i].label + "' button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab mdl-button--colored' ><i class='material-icons'>open_in_browser</i></button></a></center></div></div>")
                
-    
-
-            }
-        
-
-
+            }       
      })
+
+      } 
+  });
+
 </script>
 
 
@@ -207,8 +229,8 @@ var signIn = new OktaSignIn({
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
 // display: 'page',
-  responseType: 'code',
-  scopes: ['openid']
+  responseType: ['code', 'id_token'],
+  scopes: ['openid', 'email', 'profile', 'address', 'phone', 'groups', 'offline_access']
   }
 });
 
@@ -220,13 +242,6 @@ var authClient = new OktaAuth({
     redirectUri: 'http://localhost:3000/authorization-code/callback'
 });
 
-authClient.token.parseFromUrl()
-.then(function(tokenOrTokens) {
-  console.log(tokenOrTokens)
-})
-.catch(function(err) {
-  // handle OAuthError
-});
 
 
 function IdPAuth() {
@@ -254,27 +269,9 @@ function IdPAuth() {
     });
   });
 
-if(signIn.tokenManager.get('my_access_token') != undefined){
-  var token = authClient.tokenManager.get('my_access_token')
 
-//  $.ajax
-// ({
-//   type: "GET",
-//   url: "index1.php",
-//   dataType: 'json',
-//   async: false,
-//   headers: {
-//     "Authorization": "SSWS ")
-//   },
-//   data: '{ "comment" }',
-//   success: function (){
-//     alert('Thanks for your comment!'); 
-//   }
-// });
 
-  console.log(token)
-  
-}
+
   
 
 
@@ -284,8 +281,9 @@ signIn.renderEl(
   {el: '#sign-in-container'},
 
   function success(res) {
+    console.log("#########################")
     console.log(res)
-
+    console.log("#########################")
     if (res.status === 'SUCCESS') {
 
 
@@ -297,9 +295,9 @@ signIn.renderEl(
     
       }     
 
-      authClient.tokenManager.add('my_access_token', res);
+   signIn.tokenManager.add('my_access_token', res);
 
-      console.log(authClient.tokenManager.get('my_access_token'))
+      console.log(signIn.tokenManager.get('my_access_token'))
 
 
 
@@ -332,17 +330,4 @@ signIn.renderEl(
 
 </template>
 
-<template name="appsTaba">
-HELLOOOOO
-    <div class="mdl-card mdl-shadow--2dp demo-card-square">
-    <div class="mdl-card__title mdl-card--expand">
-      <h2 class="mdl-card__title-text">{{label}}</h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-  <center><button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-    <i class="material-icons">open_in_browser</i>
-  </button></center>
-    </div>
-  </div>
 
-</template>

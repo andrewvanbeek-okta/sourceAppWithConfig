@@ -1,12 +1,12 @@
 
 # portalforifp
 
-This project uses meteor so to install meteor follow this guide:
+This project uses meteor so to install meteor by following this guide:
 https://guide.meteor.com/#quickstart
 
-Once meteor is instal run meteor install
+Once meteor is installed
 
-cd in ifp
+cd into portalforifp(or whatever repo/folder you name it)
 meteor npm install
 
 also run 

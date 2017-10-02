@@ -9,6 +9,8 @@ Once meteor is installed
 cd into portalforifp(or whatever repo/folder you name it)
 meteor npm install
 
+also run npm install to install the npms(just to be sure)
+
 also run 
 
 meteor add session

@@ -27,8 +27,12 @@ then you should see Meteor server running on: http://localhost:3000/
 
 From there just edit all the values to match your okta tenant.  
 
-Make sure to generate an Okta api Token and replace it in server > main.js folder.
+Make sure to generate an Okta api Token and replace it in server > main.js file.
+
+okta doc: https://developer.okta.com/docs/api/getting_started/getting_a_token.html
 
 Also add http://localhost:3000 to your cors trust origins in your okta tenant.
+
+okta doc: https://developer.okta.com/docs/api/getting_started/enabling_cors.html
 
 Then done!

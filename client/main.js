@@ -8,12 +8,17 @@ var hey = []
 
 
 
+
+
+
 import './main.html';
+
+
 
   var authClient = new OktaAuth({
     url: 'https://vanbeektech.okta.com',
     clientId: '0oa43ju51wQSUcS6b1t7',
-    redirectUri: 'http://localhost:3000'
+    redirectUri: 'http://localhost:3000/authorization-code/callback'
 	});
 
 var signIn = new OktaSignIn({
@@ -23,10 +28,12 @@ var signIn = new OktaSignIn({
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
 // display: 'page',
-  responseType: ['code', 'id_token'],
-  scopes: ['openid', 'email', 'profile', 'address', 'phone', 'groups', 'offline_access']
+  responseType: 'code',
+  scopes: ['openid']
   }
 });
+
+
 
 
   signIn.session.get((response) => {
@@ -43,19 +50,7 @@ var signIn = new OktaSignIn({
 
 
 
- Template.body.events({
-    'click #logOut': function (e) {
-      e.preventDefault()
-      authClient.signOut()
-    console.log("xyztest")
-      Session.set("loggedOut", true) 
- 
 
-  signIn.tokenManager.clear();
-    }
-
-
-  });
 
 
 

@@ -2,11 +2,14 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   // code to run on server at startup
+    images = new Mongo.Collection('logoImages');
+    navColors = new Mongo.Collection('navColors');
+    stylingModels = new Mongo.Collection('styleObjects')
 });
 
 
 Picker.route('/applinks', function(params, req, res, next) {
-
+console.log("test")
 
     var yeah = "OK"
   console.log(req.body)
@@ -20,19 +23,19 @@ console.log(userId)
 
 
  
-var auth = new Buffer('6aLzadRju1m8gIRMbOpw:_3dM_wUzN5LL52BA9MjSACXFH1ctiBN_JF6KX22y').toString('base64');
+
 var route = "https://vanbeektech.okta.com/api/v1/users/" + userId + "/appLinks"
 var result = Meteor.http.get(route, {
     
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        "Authorization": "SSWS 00niOdIESXdsaEwYYy-9ESg3GmBgEfhN_yrh6EH7H" // replace with SWSS your Api Token
+        "Authorization": "SSWS 00QgR-Z9fyZ_ApUgxl0QRVowVKIfjXhJkFqthB4Dir" // replace with SWSS your Api Token
       }
     });
 
-
+  var response = {data: result.data, object: stylingModels.find().fetch()}
 	console.log(JSON.stringify(result.data))
-    res.end(  JSON.stringify(result.data)  );
+    res.end(JSON.stringify(response));
 
 
 
@@ -42,3 +45,115 @@ var result = Meteor.http.get(route, {
 
 
 });
+
+
+Picker.route('/colors', function(params, req, res, next){
+
+
+  if(colors.find().fetch().length > 0){
+    console.log("TESSST")
+    var colorsForNav = colors.find().fetch()
+    res.end(JSON.stringify(colorsForNav) )
+  } else {
+      images.insert({companyLogo: "#fff"})
+  }
+
+
+
+
+})
+
+
+Picker.route('/logos', function(params, req, res, next){
+
+
+  if(images.find().fetch().length > 0){
+    console.log("TESSST")
+ 
+
+  } else {
+      images.insert({companyLogo: "oracle"})
+
+  }
+    navColors.insert({companyLogo: "#fff"})
+    var logos = images.find().fetch()
+    var colorsForNav = navColors.find().fetch()
+    var data = {logos: logos, colors: colorsForNav}
+    res.end(JSON.stringify(data) )
+
+
+})
+
+
+Picker.route('/setLogos', function(params, req, res, next){
+
+  var companyString = params.query.logoString
+    var firstId = images.find().fetch()[0]._id;
+    console.log(companyString)
+    images.update({_id : firstId},{$set:{companyLogo : companyString}});
+
+
+  res.end(images)
+})
+
+
+Picker.route('/styleObject', function(params, req, res, next){
+
+
+  if(stylingModels.find().fetch().length > 0){
+    console.log("TESSST")
+ 
+
+  } else {
+      stylingModels.insert({companyLogo: "oracle", navColor: "#fff", cardColor: "black", headerColor: "black", buttonColor: "#FFF"})
+
+  }
+
+  var models = stylingModels.find().fetch()
+
+  res.end(JSON.stringify(models))
+
+})
+
+
+Picker.route('/setStyleObject', function(params, req, res, next){
+
+  console.log(params.query.subjectToChange)
+  if(params.query.subjectToChange == "navColorForm"){
+    var companyString = params.query.logoString
+
+    var firstId = stylingModels.find().fetch()[0]._id;
+    console.log(companyString)
+    stylingModels.update({_id : firstId},{$set:{navColor: params.query.logoString}});
+
+
+  } else if(params.query.subjectToChange == "logoForm"){
+    var companyString = params.query.logoString
+    console.log("AUIHAUIHFUIEUIHUOHUHOHOIHO")
+    console.log(companyString)
+    var firstId = stylingModels.find().fetch()[0]._id;
+    console.log(companyString)
+    stylingModels.update({_id : firstId},{$set:{companyLogo: params.query.logoString}});
+
+  } else if(params.query.subjectToChange == "CardColorForm"){
+
+    console.log(params.query.logoString)
+    var firstId = stylingModels.find().fetch()[0]._id;
+   
+    stylingModels.update({_id : firstId},{$set:{cardColor: params.query.logoString}});
+    
+  } else if(params.query.subjectToChange == "textColorForm"){
+     var firstId = stylingModels.find().fetch()[0]._id;
+    stylingModels.update({_id : firstId},{$set:{headerColor: params.query.logoString}});
+  } else if(params.query.subjectToChange == "buttonColorForm"){
+      var firstId = stylingModels.find().fetch()[0]._id;
+    stylingModels.update({_id : firstId},{$set:{buttonColor: params.query.logoString}});
+  }
+
+
+
+
+})
+
+
+

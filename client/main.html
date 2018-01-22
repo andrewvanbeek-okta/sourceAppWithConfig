@@ -7,7 +7,6 @@
   <!-- Compiled and minified JavaScript -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.11.0/js/okta-sign-in.min.js" type="text/javascript"></script>
   <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.11.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet">
   <!-- Customizable css theme options. Link your own customized copy of this file or override styles in-line -->
   <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.11.0/css/okta-theme.css" type="text/css" rel="stylesheet">
@@ -18,7 +17,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/aes.js'></script>
-  <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-auth-js/1.5.0/OktaAuth.min.js" type="text/javascript"></script>
+<script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.11.0/js/okta-sign-in.min.js"
+  type="text/javascript"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -29,7 +29,7 @@
 #okta-sign-in h2, #okta-sign-in h3 {
   color: black;
 }
-  
+
   .mdl-card__title-text {
 
     size: 14px;
@@ -64,7 +64,7 @@
 
     a {
 
-       color: black; 
+       color: black;
     }
 
 .auth-org-logo {
@@ -98,7 +98,7 @@
 </style>
 
 
-          
+
 </head>
 
 
@@ -108,7 +108,7 @@
 
 
 <script type="text/javascript">
-  
+
 
 
 $.ajax({
@@ -155,7 +155,7 @@ $.ajax({
 </video>
 
 
-    
+
   <div class="mdl-layout mdl-js-layout">
   <header id="navbar" class="mdl-layout__header">
     <div class="mdl-layout__header-row">
@@ -165,20 +165,27 @@ $.ajax({
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation links, hidden on smaller displays -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
- 
+
       {{#if showLogin}}
-        
+      <button onclick="IdPAuth()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Hudson Alpha Employees Sign In</button>
+
       {{else}}
       <a id="userName" class="mdl-navigation__link" href=""></a>
       <a id="logOuting"  onclick="logOut()" class="mdl-navigation__link nav-links" href="">Logout</a>
+      <button id="spoofThat" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Spoof Users</button>
       <script>
       $(document).on("click", "#logOuting", function(e){
         e.preventDefault()
          window.location = "https://vanbeektech.okta.com/login/signout?fromURI=http://localhost:3000"
       });
-     
+
+      $(document).on("click", "#spoofThat", function(e){
+        e.preventDefault()
+         window.location = "https://vanbeektech.okta.com/home/oidc_client/0oa48bwmxvpxapWt31t7/alntwmdyyUB5fs8d50g4"
+      });
+
     </script>
-    
+
       {{/if}}
 
       <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon right">
@@ -193,7 +200,7 @@ $.ajax({
 
 <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect right">
 
-  
+
 </div>
       </nav>
     </div>
@@ -229,12 +236,40 @@ $.ajax({
   <form id="logoForm" class="styleForm" action="#">
 
     <input class="mdl-textfield__input" type="text" id="logoVal">
-    
+
+    <input type="submit">
+
+</form>
+<br><br>
+
+  <form id="oktaAuthObjects" class="oktaForm" action="#">
+  <label>Okta Url</label>
+    <input class="mdl-textfield__input" type="text" id="urlVal">
+    <input class="mdl-textfield__input" type="text" id="clientVal">
+
     <input type="submit">
 
 </form>
 
+
+
   <script>
+
+    $(document).on('submit', '#clientId', function(e){
+    e.preventDefault()
+    if(ClientIds.find().fetch().length > 0){
+
+
+
+    } else {
+      ClientIds.insert({clientId: $(e.target).children()[0].value})
+
+    }
+
+  });
+
+
+
  $(document).on('submit','colorForm',function(e){
   console.log(e)
   e.preventDefault();
@@ -252,13 +287,13 @@ $.ajax({
   var target = e.currentTarget
   console.log(target)
   console.log(target.id)
- 
+
   var companyValue = $(target).children()[0].value
 
    var company = "https://logo.clearbit.com/" + $("#logoVal").val() + ".com"
    console.log(company)
 
- 
+
     if(target.id == "navColorForm"){
           console.log("change the nav")
       $("#navbar").css("background-color", companyValue);
@@ -271,8 +306,8 @@ $.ajax({
     console.log("change the card color")
     console.log(company)
       $('.auth-content').css('background-color', company);
- 
-    
+
+
   } else {
       console.log("test")
       console.log("change the card color")
@@ -306,7 +341,7 @@ $.ajax({
 .always(function() {
   console.log("complete");
 });
-  
+
 location.reload();
 });
 
@@ -319,11 +354,11 @@ location.reload();
     </div>
   </div>
   </div>
-    
+
     <!-- Drawer container -->
 
-    
-    
+
+
   <main class="mdl-layout__content">
     <div class="page-content"><!-- Page Contents should be here--></div>
   </main>
@@ -336,19 +371,34 @@ location.reload();
 {{else}}
   <script>
 
-//replace values of baseurl, client id , and whatever redirect uri you use 
+//replace values of baseurl, client id , and whatever redirect uri you use
 
 var signIn = new OktaSignIn({
-  baseUrl: 'https://vanbeektech.okta.com',
+      baseUrl: 'https://vanbeektech.okta.com',
   logo: '/userLogin.png',
   clientId: '0oa43ju51wQSUcS6b1t7',
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
 // display: 'page',
-  responseType: 'code',
+  responseType: ['code', 'token'],
   scopes: ['openid']
   }
 });
+
+  signIn.token.parseTokensFromUrl(
+    function success(res) {
+      console.log(res)
+      signIn.tokenManager.add('my_access_token', res[1]);
+    },
+    function error(err) {
+      console.log(err)
+    }
+  );
+
+
+//console.log(signIn.tokenManager.get('my_access_token'))
+
+
 
  signIn.session.get((response) => {
       if (response.status !== 'INACTIVE') {
@@ -364,7 +414,7 @@ var signIn = new OktaSignIn({
          "Accept": "application/json"},
        data: {userId: userId}
      }).done(function(d){
-      
+
             var appLinks = d.data
             var object = d.object[0]
             var cardColor = d.object[0].cardColor
@@ -386,7 +436,7 @@ var signIn = new OktaSignIn({
 
   })
 
-                } 
+                }
             });
 
 </script>
@@ -417,25 +467,85 @@ var signIn = new OktaSignIn({
 <div id="sign-in-container"></div>
 <script>
 
+var authClient = new OktaAuth({
+    url: 'https://vanbeektech.okta.com',
+    clientId: '0oa43ju51wQSUcS6b1t7',
+    redirectUri: 'http://localhost:3000/authorization-code/callback'
+});
 
-//replace values of baseurl, client id , and whatever redirect uri you use 
+if(authClient.tokenManager.get('tokens') != null){
+console.log(authClient.tokenManager.get('tokens'))
 
+}
+
+
+
+Meteor.subscribe("authObjects");
+
+var signInValuesClientId  = "no value"
+var signInValuesUrl = "no value"
+
+Meteor.subscribe("authObjects");
+
+
+
+  $(document).on('submit', '#oktaAuthObjects', function(e){
+  e.preventDefault()
+  if(OktaAppConfigurations.find().fetch().length < 0){
+    console.log("addding the files duuuuuuuuuuuuuuuuude")
+
+
+    OktaAppConfigurations.insert({clientId: $(e.target).children()[1].value, url: $(e.target).children()[2].value})
+
+
+
+
+  } else {
+
+    console.log("records added")
+    var firstId = OktaAppConfigurations.find().fetch()[0]._id;
+      if( $(e.target).children()[2].value != undefined){
+        OktaAppConfigurations.update({_id : firstId},{$set:{url: $(e.target).children()[2].value}});
+      }
+
+      if($(e.target).children()[1].value  != undefined){
+          OktaAppConfigurations.update({_id : firstId},{$set:{clientId: $(e.target).children()[1].value}});
+
+      }
+
+  }
+
+  console.log(OktaAppConfigurations.find().fetch()[0])
+
+});
+
+if(OktaAppConfigurations.find().fetch().length > 0){
+  console.log(OktaAppConfigurations.find().fetch()[0])
+
+  var authObject = OktaAppConfigurations.find().fetch()[0]
+  var signInValuesClientId = authObject.clientId
+  var signInValuesUrl = authObject.url
+
+
+}
+
+
+console.log("url:" + signInValuesUrl)
+console.log("clientId:" + signInValuesClientId)
 
 var signIn = new OktaSignIn({
-  baseUrl: 'https://vanbeektech.okta.com',
+  baseUrl: "https://vanbeektech.okta.com",
   logo: '/userLogin.png',
   clientId: '0oa43ju51wQSUcS6b1t7',
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
 // display: 'page',
-  responseType: ['code', 'id_token'],
-
+  responseType: ['code', 'token'],
   scopes: ['openid', 'email', 'profile', 'address', 'phone', 'groups', 'offline_access']
-  }
+}
 });
 
-//replace values of baseurl, client id , and whatever redirect uri you use 
-
+//replace values of baseurl, client id , and whatever redirect uri you use
 
 var authClient = new OktaAuth({
     url: 'https://vanbeektech.okta.com',
@@ -444,11 +554,10 @@ var authClient = new OktaAuth({
 });
 
 
-
 function IdPAuth() {
     var options = {
           scopes: ['openid', 'email', 'profile'],
-            responseType: ['code', 'id_token'],
+            responseType: 'token',
             idp: '0oa38fseusRyzxVKf1t7',
             redirectUri: 'http://localhost:3000/authorization-code/callback'
         };
@@ -461,9 +570,6 @@ function IdPAuth() {
 
 
 
-
-
-  
 
 
 
@@ -479,16 +585,17 @@ signIn.renderEl(
 
 
       if (res.type === 'SESSION_STEP_UP') {
-  
+
         return;
       } else {
-   
-    
-      }     
 
-   signIn.tokenManager.add('my_access_token', res);
+
+      }
+
+
 
       console.log(signIn.tokenManager.get('my_access_token'))
+      // window.location.href = "https://vanbeektech.okta.com"
 
 
 
@@ -499,7 +606,7 @@ signIn.renderEl(
   },
 
   function error(err) {
-   
+
   }
 );
 
@@ -524,6 +631,19 @@ $.ajax({
   console.log("complete");
 });
 
+setInterval(function(){
+
+console.log($("#input29").val())
+if($("#input29").val() == "andrew.vanbeek@samsung.com"){
+
+IdPAuth()
+
+}
+
+
+ }, 1000);
+
+
 
 </script>
 </template>
@@ -537,7 +657,7 @@ $.ajax({
 <div id="apssBody" class="container">
 
      {{#if appsTab}}
- 
+
     {{/if}}
 
   </div>
@@ -545,7 +665,7 @@ $.ajax({
 </template>
 
 <template name="admin">
-  
+
   <main class="mdl-layout__content">
     <form action="/action_page.php">
     Select your favorite color:
@@ -558,5 +678,3 @@ $.ajax({
 
 
 </template>
-
-

@@ -8,7 +8,32 @@ var hey = []
 
 
 
+console.log(OktaAppConfigurations.find().fetch())
 
+
+console.log()
+
+OktaUrls = new Mongo.Collection('urls')
+ClientIds = new Mongo.Collection('clientIds')
+
+
+
+if(Meteor.is_client) {
+  OktaUrls.allow({
+           insert: function () {
+           return true;
+           },
+           update: function () {
+           return true;
+           },
+            publish: function () {
+           return true;
+           },
+           remove: function () {
+           return true;
+           }
+           });
+}
 
 
 import './main.html';
@@ -36,6 +61,7 @@ var signIn = new OktaSignIn({
 
 
 
+
   signIn.session.get((response) => {
       if (response.status !== 'INACTIVE') {
         console.log(response)
@@ -47,7 +73,6 @@ var signIn = new OktaSignIn({
         console.log("logged out")
       }
   });
-
 
 
 
@@ -125,6 +150,3 @@ Template.body.helpers({
 	showLogin() { return Session.get("loggedOut") }
 
 })
-
-
-

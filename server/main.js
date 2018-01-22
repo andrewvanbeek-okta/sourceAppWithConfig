@@ -5,8 +5,13 @@ Meteor.startup(() => {
     images = new Mongo.Collection('logoImages');
     navColors = new Mongo.Collection('navColors');
     stylingModels = new Mongo.Collection('styleObjects')
+    OktaAppConfigurations = new Mongo.Collection("objects")
+
 });
 
+
+
+HEY = "YAKA"
 
 Picker.route('/applinks', function(params, req, res, next) {
 console.log("test")
@@ -22,19 +27,22 @@ console.log(userId)
 
 
 
- 
+
 
 var route = "https://vanbeektech.okta.com/api/v1/users/" + userId + "/appLinks"
+
 var result = Meteor.http.get(route, {
-    
+
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        "Authorization": "SSWS 00QgR-Z9fyZ_ApUgxl0QRVowVKIfjXhJkFqthB4Dir" // replace with SWSS your Api Token
+        "Authorization": "SSWS 00FbSUcF4Ud2hMUNtjDQj-Jd94HQTavm284x0D7aKu"// replace with SWSS your Api Token
       }
     });
 
   var response = {data: result.data, object: stylingModels.find().fetch()}
-	console.log(JSON.stringify(result.data))
+
+  var something = JSON.stringify(result.data)
+  console.log(something[0])
     res.end(JSON.stringify(response));
 
 
@@ -64,12 +72,45 @@ Picker.route('/colors', function(params, req, res, next){
 })
 
 
+
+Picker.route('/postAuth', function(params, req, res, next){
+
+if(OktaAppConfigurations.find().fetch().length > 0){
+  console.log("addding the files duuuuuuuuuuuuuuuuude")
+
+  console.log(params.query.url)
+  console.log(params.query.clientId)
+  OktaAppConfigurations.insert({clientId: params.query.clientId, url: params.query.url})
+
+
+
+
+} else {
+
+  console.log("records added")
+  var firstId = stylingModels.find().fetch()[0]._id;
+    if(params.query.url != undefined){
+      OktaAppConfigurations.update({_id : firstId},{$set:{url: params.query.url}});
+    } else if(params.query.clientId != undefined){
+        OktaAppConfigurations.update({_id : firstId},{$set:{clientId: params.query.clientId}});
+
+
+    }
+
+}
+
+
+
+})
+
+
+
 Picker.route('/logos', function(params, req, res, next){
 
 
   if(images.find().fetch().length > 0){
     console.log("TESSST")
- 
+
 
   } else {
       images.insert({companyLogo: "oracle"})
@@ -102,7 +143,7 @@ Picker.route('/styleObject', function(params, req, res, next){
 
   if(stylingModels.find().fetch().length > 0){
     console.log("TESSST")
- 
+
 
   } else {
       stylingModels.insert({companyLogo: "oracle", navColor: "#fff", cardColor: "black", headerColor: "black", buttonColor: "#FFF"})
@@ -139,9 +180,9 @@ Picker.route('/setStyleObject', function(params, req, res, next){
 
     console.log(params.query.logoString)
     var firstId = stylingModels.find().fetch()[0]._id;
-   
+
     stylingModels.update({_id : firstId},{$set:{cardColor: params.query.logoString}});
-    
+
   } else if(params.query.subjectToChange == "textColorForm"){
      var firstId = stylingModels.find().fetch()[0]._id;
     stylingModels.update({_id : firstId},{$set:{headerColor: params.query.logoString}});
@@ -154,6 +195,3 @@ Picker.route('/setStyleObject', function(params, req, res, next){
 
 
 })
-
-
-

@@ -72,6 +72,36 @@ Picker.route('/colors', function(params, req, res, next){
 })
 
 
+Picker.route('/register', function(params, req, res, next){
+  console.log(params)
+  var data = {
+  "profile": {
+    "firstName": params.query.firstname,
+    "lastName": params.query.lastname,
+    "email": params.query.email,
+    "login": params.query.email,
+    "mobilePhone": params.query.phonenumber,
+    "zipcode": params.query.zipcode
+  },
+  "credentials": {
+    "password" : { "value": params.query.password }
+  }
+}
+  var route = "https://vanbeektech.okta.com/api/v1/users?activate=true"
+  var result = Meteor.http.post(route, {
+        data: data,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          "Authorization": "SSWS 00FbSUcF4Ud2hMUNtjDQj-Jd94HQTavm284x0D7aKu"// replace with SWSS your Api Token
+        }
+      });
+
+    var response = {data: result.data}
+
+    var something = JSON.stringify(result.data)
+      res.end(JSON.stringify(response));
+})
 
 Picker.route('/postAuth', function(params, req, res, next){
 

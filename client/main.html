@@ -1,12 +1,12 @@
 <head>
   <title>ifp</title>
 
-   <!-- Compiled and minified CSS -->
+  <!-- Compiled and minified CSS -->
 
 
   <!-- Compiled and minified JavaScript -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.11.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet">
   <!-- Customizable css theme options. Link your own customized copy of this file or override styles in-line -->
   <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.11.0/css/okta-theme.css" type="text/css" rel="stylesheet">
@@ -17,18 +17,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/aes.js'></script>
-<script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.11.0/js/okta-sign-in.min.js"
+  <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.11.0/js/okta-sign-in.min.js"
   type="text/javascript"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Lobster|Oswald" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Oswald" rel="stylesheet">
 
-<style>
-#okta-sign-in h2, #okta-sign-in h3 {
-  color: black;
-}
+  <style>
+  #okta-sign-in h2, #okta-sign-in h3 {
+    color: black;
+  }
 
   .mdl-card__title-text {
 
@@ -37,35 +37,35 @@
     font-family: 'Oswald', sans-serif;
   }
 
-#navbar {
-  margin-top: 0%;
-  background-color: white;
-  height: 80px;
-}
+  #navbar {
+    margin-top: 0%;
+    background-color: white;
+    height: 80px;
+  }
 
-.auth-content {
+  .auth-content {
 
-  background-color: #0B0906;
-}
+    background-color: #0B0906;
+  }
 
-#form18 > div.o-form-button-bar > input {
-  background-color: #B38D53;
+  #form18 > div.o-form-button-bar > input {
+    background-color: #B38D53;
 
-}
+  }
 
-.mdl-dialog {
-  width: 600px;
-}
+  .mdl-dialog {
+    width: 600px;
+  }
 
-    a {
+  a {
 
-       color: black;
-    }
+    color: black;
+  }
 
-.auth-org-logo {
-  max-width: 200px;
-  max-height: 500px;
-}
+  .auth-org-logo {
+    max-width: 200px;
+    max-height: 500px;
+  }
 </style>
 
 
@@ -77,187 +77,197 @@
 
 
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
 
 
-$.ajax({
-  url: '/styleObject',
-  type: 'GET',
-  dataType: 'json',
-})
-.done(function(data) {
-  console.log("success");
+  $.ajax({
+    url: '/styleObject',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    console.log("success");
 
 
-   console.log(data[0])
-   var logoString = data[0].companyLogo
-   console.log(logoString)
-   var color = data[0].navColor
-   var cardColor = data[0].cardColor
-   var textColor = data[0].headerColor
+    console.log(data[0])
+    var logoString = data[0].companyLogo
+    console.log(logoString)
+    var color = data[0].navColor
+    var cardColor = data[0].cardColor
+    var textColor = data[0].headerColor
 
-  var company = "https://logo.clearbit.com/" + logoString + ".com"
-  console.log(company)
-  $('#logopic').attr('src', company);
-  $("#navbar").css("background-color", color);
-   $("a").css("color", textColor);
-   $(".mdl-card__supporting-text").css("background-color", cardColor)
-  $(".mdl-card__supporting-text").css("color", textColor)
+    var company = "https://logo.clearbit.com/" + logoString + ".com"
+    console.log(company)
+    $('#logopic').attr('src', company);
+    $("#navbar").css("background-color", color);
+    $("a").css("color", textColor);
+    $(".mdl-card__supporting-text").css("background-color", cardColor)
+    $(".mdl-card__supporting-text").css("color", textColor)
 
-})
-.fail(function(data) {
-  console.log("error");
-  console.log(data)
+  })
+  .fail(function(data) {
+    console.log("error");
+    console.log(data)
 
-})
-.always(function() {
-  console.log("complete");
-});
+  })
+  .always(function() {
+    console.log("complete");
+  });
 
 
 </script>
 
-  <video autoplay loop muted poster="screenshot.jpg" id="background">
+<video autoplay loop muted poster="screenshot.jpg" id="background">
 
-    <source src="/city.mp4" type="video/mp4">
+  <source src="/city.mp4" type="video/mp4">
 
-</video>
+  </video>
 
 
 
   <div class="mdl-layout mdl-js-layout">
-  <header id="navbar" class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title of the Header -->
-      <span class="mdl-layout-title"><img id="logopic" src="https://logo.clearbit.com/fabricgenomics.com" height="80"></span>
-      <!-- Spacer, to align items to right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation links, hidden on smaller displays -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
+    <header id="navbar" class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title of the Header -->
+        <span class="mdl-layout-title"><img id="logopic" src="https://logo.clearbit.com/fabricgenomics.com" height="80"></span>
+        <!-- Spacer, to align items to right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation links, hidden on smaller displays -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
 
-      {{#if showLogin}}
-      <button onclick="IdPAuth()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Idp Sign In</button>
-      <button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Sign Up</button>
-  <dialog class="mdl-dialog">
-    <style>
-.demo-card-wide.mdl-card {
-  width: 500px;
-}
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 300px;
-  background: url('/Person.png') center / cover;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
-}
-</style>
-    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Welcome</h2>
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <h2 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-      Get Started
-    </h2>
-  </div>
-</div>
-    <div class="mdl-dialog__content">
-      <form id="send" method="get">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="firstname">
-      <label class="mdl-textfield__label" for="sample3">First Name</label>
-    </div>
-    <br>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="lastname">
-      <label class="mdl-textfield__label" for="sample3">Last Name</label>
-    </div>
-    <br>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="email">
-      <label class="mdl-textfield__label" for="sample3">Email</label>
-    </div>
-    <br>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="phonenumber">
-      <label class="mdl-textfield__label" for="sample3">Phone Number</label>
-    </div>
-    <br>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="zipcode">
-      <label class="mdl-textfield__label" for="sample3">Zip Code</label>
-    </div>
-    <br>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="password">
-      <label class="mdl-textfield__label" for="sample3">Text...</label>
-    </div>
-     <button id="submitForm">Send my greetings</button>
-  </form>
-    </div>
-    <div class="mdl-dialog__actions">
-      <button type="button" class="mdl-button close">Disagree</button>
-    </div>
-  </dialog>
-  <script>
-    var dialog = document.querySelector('dialog');
-    var showDialogButton = document.querySelector('#show-dialog');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-    showDialogButton.addEventListener('click', function() {
-      dialog.showModal();
-    });
-    dialog.querySelector('.close').addEventListener('click', function() {
-      dialog.close();
-    });
-    $("#send").on("submit", function(e){
-    
-        var data = {firstname: $("#firstname").val(), lastname: $("#lastname").val(), email: $("#email").val(), phonenumber: $("#phonenumber").val(), zipcode: $("#zipcode").val(), "password": $("#password").val()}
-      $.ajax({
-        url: '/register',
-        type: 'GET',
-        dataType: 'json',
-        data: data
-      })
-    })
+          {{#if showLogin}}
+          <button onclick="IdPAuth()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Idp Sign In</button>
+          <button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Sign Up</button>
+          <dialog class="mdl-dialog">
+            <style>
+            .demo-card-wide.mdl-card {
+              width: 500px;
+            }
+            .demo-card-wide > .mdl-card__title {
+              color: #fff;
+              height: 300px;
+              background: url('/Person.png') center / cover;
+            }
+            .demo-card-wide > .mdl-card__menu {
+              color: #fff;
+            }
+          </style>
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Welcome</h2>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <h2 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Get Started
+              </h2>
+            </div>
+          </div>
+          <div class="mdl-dialog__content">
+            <form id="send" method="get">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="firstname">
+                <label class="mdl-textfield--floating-label" for="sample3">First Name</label>
+              </div>
+              <br>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="lastname">
+                <label class="mdl-textfield--floating-label" for="sample3">Last Name</label>
+              </div>
+              <br>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="email">
+                <label class="mdl-textfield--floating-label" for="sample3">Email</label>
+              </div>
+              <br>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="phonenumber">
+                <label class="mdl-textfield--floating-label" for="sample3">Phone Number</label>
+              </div>
+              <br>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="zipcode">
+                <label class="mdl-textfield--floating-label" for="sample3">Zip Code</label>
+              </div>
+              <br>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="password">
+                <label class="mdl-textfield--floating-label" for="sample3">Password</label>
+              </div>
+              <br>
+              <button id="submitForm" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit</button>
+            </form>
+          </div>
+          <div class="mdl-dialog__actions">
+            <button type="button" id="single" class="mdl-button close paper-button raised-button colored">Done</button>
+          </div>
+        </dialog>
+        <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+          <div class="mdl-snackbar__text"></div>
+          <button type="button" class="mdl-snackbar__action"></button>
+        </div>
 
-  </script>
+        <script>
+        var dialog = document.querySelector('dialog');
+        var showDialogButton = document.querySelector('#show-dialog');
+        if (! dialog.showModal) {
+          dialogPolyfill.registerDialog(dialog);
+        }
+        showDialogButton.addEventListener('click', function() {
+          dialog.showModal();
+        });
+        dialog.querySelector('.close').addEventListener('click', function() {
+          dialog.close();
+        });
 
-      {{else}}
-      <a id="userName" class="mdl-navigation__link" href=""></a>
-      <a id="logOuting"  onclick="logOut()" class="mdl-navigation__link nav-links" href="">Logout</a>
-      <script>
-      $(document).on("click", "#logOuting", function(e){
-        e.preventDefault()
-         window.location = "https://vanbeektech.okta.com/login/signout?fromURI=http://localhost:3000"
-      });
+        $("#send").on("submit", function(e){
+          e.preventDefault()
+          var data = {firstname: $("#firstname").val(), lastname: $("#lastname").val(), email: $("#email").val(), phonenumber: $("#phonenumber").val(), zipcode: $("#zipcode").val(), "password": $("#password").val()}
+          $.ajax({
+            url: '/register',
+            type: 'GET',
+            dataType: 'json',
+            data: data
+          }).done(function(data) {
+              console.log("success");
+              window.alert("User Created!")
 
-      $(document).on("click", "#spoofThat", function(e){
-        e.preventDefault()
-         window.location = "https://vanbeektech.okta.com/home/oidc_client/0oa48bwmxvpxapWt31t7/alntwmdyyUB5fs8d50g4"
-      });
-
-    </script>
-
-      {{/if}}
-
-      <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon right">
-                   <i class="material-icons">more_vert</i>
-                 </button>
-          <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Your Title</span>
-    </div>
+            }).always(function(data) {
 
 
+            console.log("complete");
+          });
+        })
+
+        </script>
+
+        {{else}}
+        <a id="userName" class="mdl-navigation__link" href=""></a>
+        <a id="logOuting"  onclick="logOut()" class="mdl-navigation__link nav-links" href="">Logout</a>
+        <script>
+        $(document).on("click", "#logOuting", function(e){
+          e.preventDefault()
+          window.location = "https://vanbeektech.okta.com/login/signout?fromURI=http://localhost:3000"
+        });
+
+        </script>
+
+        {{/if}}
+
+        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon right">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <div class="mdl-layout__drawer">
+          <span class="mdl-layout-title">Your Title</span>
+        </div>
 
 
-<div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect right">
 
 
-</div>
+        <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect right">
+
+
+        </div>
       </nav>
     </div>
   </header>
@@ -265,240 +275,240 @@ $.ajax({
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Portal Appearence</span>
     <div>
-    <form id="navColorForm" class="colorForm styleForm" action="/">
-      Select Navbar color
-      <input id="navbarColor" type="color" name="favcolor" value="#ff0000">
-      <input type="submit">
-  </form>
+      <form id="navColorForm" class="colorForm styleForm" action="/">
+        Select Navbar color
+        <input id="navbarColor" type="color" name="favcolor" value="#ff0000">
+        <input type="submit">
+      </form>
 
-  <form id="CardColorForm" class="colorForm styleForm" action="/">
-      Select card color
-      <input id="cardColor" type="color" name="favcolor" value="#ff0000">
-      <input type="submit">
-  </form>
+      <form id="CardColorForm" class="colorForm styleForm" action="/">
+        Select card color
+        <input id="cardColor" type="color" name="favcolor" value="#ff0000">
+        <input type="submit">
+      </form>
 
-  <form id="textColorForm" class="colorForm styleForm" action="/">
-      Select Text Color
-      <input id="textColor" type="color" name="favcolor" value="#ff0000">
-      <input type="submit">
-  </form>
+      <form id="textColorForm" class="colorForm styleForm" action="/">
+        Select Text Color
+        <input id="textColor" type="color" name="favcolor" value="#ff0000">
+        <input type="submit">
+      </form>
 
-  <form id="buttonColorForm" class="colorForm styleForm" action="/">
-      Select button Color
-      <input id="buttonColor" type="color" name="favcolor" value="#ff0000">
-      <input type="submit">
-  </form>
+      <form id="buttonColorForm" class="colorForm styleForm" action="/">
+        Select button Color
+        <input id="buttonColor" type="color" name="favcolor" value="#ff0000">
+        <input type="submit">
+      </form>
 
-  <form id="logoForm" class="styleForm" action="#">
+      <form id="logoForm" class="styleForm" action="#">
 
-    <input class="mdl-textfield__input" type="text" id="logoVal">
+        <input class="mdl-textfield__input" type="text" id="logoVal">
 
-    <input type="submit">
+        <input type="submit">
 
-</form>
-<br><br>
+      </form>
+      <br><br>
 
-  <form id="oktaAuthObjects" class="oktaForm" action="#">
-  <label>Okta Url</label>
-    <input class="mdl-textfield__input" type="text" id="urlVal">
-    <input class="mdl-textfield__input" type="text" id="clientVal">
+      <form id="oktaAuthObjects" class="oktaForm" action="#">
+        <label>Okta Url</label>
+        <input class="mdl-textfield__input" type="text" id="urlVal">
+        <input class="mdl-textfield__input" type="text" id="clientVal">
 
-    <input type="submit">
+        <input type="submit">
 
-</form>
-
-
-
-  <script>
-
-    $(document).on('submit', '#clientId', function(e){
-    e.preventDefault()
-    if(ClientIds.find().fetch().length > 0){
+      </form>
 
 
 
-    } else {
-      ClientIds.insert({clientId: $(e.target).children()[0].value})
+      <script>
 
-    }
-
-  });
-
+      $(document).on('submit', '#clientId', function(e){
+        e.preventDefault()
+        if(ClientIds.find().fetch().length > 0){
 
 
- $(document).on('submit','colorForm',function(e){
-  console.log(e)
-  e.preventDefault();
-  var target = e.currentTarget
-  console.log(target)
 
-   var color = $(target).children()[0].value
-   $("#navbar").css("background-color", color)
-});
+        } else {
+          ClientIds.insert({clientId: $(e.target).children()[0].value})
 
-  $(document).on('submit','.styleForm',function(e){
-  console.log(e)
-  console.log("EFISIFHEIOHFIEHIS")
-  e.preventDefault();
-  var target = e.currentTarget
-  console.log(target)
-  console.log(target.id)
+        }
 
-  var companyValue = $(target).children()[0].value
-
-   var company = "https://logo.clearbit.com/" + $("#logoVal").val() + ".com"
-   console.log(company)
+      });
 
 
-    if(target.id == "navColorForm"){
+
+      $(document).on('submit','colorForm',function(e){
+        console.log(e)
+        e.preventDefault();
+        var target = e.currentTarget
+        console.log(target)
+
+        var color = $(target).children()[0].value
+        $("#navbar").css("background-color", color)
+      });
+
+      $(document).on('submit','.styleForm',function(e){
+        console.log(e)
+        console.log("EFISIFHEIOHFIEHIS")
+        e.preventDefault();
+        var target = e.currentTarget
+        console.log(target)
+        console.log(target.id)
+
+        var companyValue = $(target).children()[0].value
+
+        var company = "https://logo.clearbit.com/" + $("#logoVal").val() + ".com"
+        console.log(company)
+
+
+        if(target.id == "navColorForm"){
           console.log("change the nav")
-      $("#navbar").css("background-color", companyValue);
+          $("#navbar").css("background-color", companyValue);
 
-  } else if(target.id == "logoForm"){
-    console.log("change the logo")
-      $('#logopic').attr('src', company);
+        } else if(target.id == "logoForm"){
+          console.log("change the logo")
+          $('#logopic').attr('src', company);
 
-  } else if(target.id == "CardColorForm"){
-    console.log("change the card color")
-    console.log(company)
-      $('.auth-content').css('background-color', company);
-
-
-  } else {
-      console.log("test")
-      console.log("change the card color")
-      console.log(company)
-    $('a').css('color', company);
-
-  }
-
-  var logoData = {logoString: companyValue, subjectToChange: target.id}
-  console.log(logoData)
-
-  $.ajax({
-  url: '/setStyleObject',
-  type: 'GET',
-  dataType: 'json',
-  data: logoData
-})
-.done(function(data) {
-  console.log("success");
-  console.log(data)
-  var companies = data
-  var companyOne = companies[0]
+        } else if(target.id == "CardColorForm"){
+          console.log("change the card color")
+          console.log(company)
+          $('.auth-content').css('background-color', company);
 
 
-})
-.fail(function(data) {
-  console.log("error");
-  console.log(data)
+        } else {
+          console.log("test")
+          console.log("change the card color")
+          console.log(company)
+          $('a').css('color', company);
 
-})
-.always(function() {
-  console.log("complete");
-});
+        }
 
-location.reload();
-});
+        var logoData = {logoString: companyValue, subjectToChange: target.id}
+        console.log(logoData)
+
+        $.ajax({
+          url: '/setStyleObject',
+          type: 'GET',
+          dataType: 'json',
+          data: logoData
+        })
+        .done(function(data) {
+          console.log("success");
+          console.log(data)
+          var companies = data
+          var companyOne = companies[0]
+
+
+        })
+        .fail(function(data) {
+          console.log("error");
+          console.log(data)
+
+        })
+        .always(function() {
+          console.log("complete");
+        });
+
+        location.reload();
+      });
 
 
 
 
-  </script>
+      </script>
 
 
     </div>
   </div>
-  </div>
+</div>
 
-    <!-- Drawer container -->
+<!-- Drawer container -->
 
 
 
-  <main class="mdl-layout__content">
-    <div class="page-content"><!-- Page Contents should be here--></div>
-  </main>
+<main class="mdl-layout__content">
+  <div class="page-content"><!-- Page Contents should be here--></div>
+</main>
 {{>admin}}
 {{#if showLogin}}
 
-  {{>login}}
+{{>login}}
 
 
 {{else}}
-  <script>
+<script>
 
 //replace values of baseurl, client id , and whatever redirect uri you use
 
 var signIn = new OktaSignIn({
-      baseUrl: 'https://vanbeektech.okta.com',
+  baseUrl: 'https://vanbeektech.okta.com',
   logo: '/userLogin.png',
   clientId: '0oa43ju51wQSUcS6b1t7',
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
-// display: 'page',
-  responseType: ['code', 'token'],
-  scopes: ['openid']
+    // display: 'page',
+    responseType: ['code', 'token'],
+    scopes: ['openid']
   }
 });
 
-  signIn.token.parseTokensFromUrl(
-    function success(res) {
-      console.log(res)
-      signIn.tokenManager.add('my_access_token', res[1]);
-    },
-    function error(err) {
-      console.log(err)
-    }
-  );
+signIn.token.parseTokensFromUrl(
+  function success(res) {
+    console.log(res)
+    signIn.tokenManager.add('my_access_token', res[1]);
+  },
+  function error(err) {
+    console.log(err)
+  }
+);
 
 
 //console.log(signIn.tokenManager.get('my_access_token'))
 
 
 
- signIn.session.get((response) => {
-      if (response.status !== 'INACTIVE') {
-        console.log(response.userId)
-        var userId = response.userId
-        $.ajax({
-       url: '/appLinks',
-       type: 'GET',
-       xhrFields: { withCredentials: true },
-       dataType: 'json',
-       headers: {
-         "Content-Type": "application/json",
-         "Accept": "application/json"},
-       data: {userId: userId}
-     }).done(function(d){
+signIn.session.get((response) => {
+  if (response.status !== 'INACTIVE') {
+    console.log(response.userId)
+    var userId = response.userId
+    $.ajax({
+      url: '/appLinks',
+      type: 'GET',
+      xhrFields: { withCredentials: true },
+      dataType: 'json',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"},
+        data: {userId: userId}
+      }).done(function(d){
 
-            var appLinks = d.data
-            var object = d.object[0]
-            var cardColor = d.object[0].cardColor
-            var textColor = d.object[0].textColor
-            var buttonColor = d.object[0].buttonColor
-            var arrayLength = appLinks.length
-            for (var i = 0; i < arrayLength; i++) {
-                 $("#apssBody").append("<div class='mdl-card mdl-shadow--2dp demo-card-square'><div style='background-color: black; background: url(" + appLinks[i].logoUrl + ");  background-position: center; background-repeat:no-repeat;;'class='mdl-card__title mdl-card--expand'><h5 class='mdl-card__title-text' style='color: #B38D53'>" + appLinks[i].label + "</h5></div><div class='mdl-card__supporting-text'><center><a href='" + appLinks[i].linkUrl + "' id='link1'><id='" + appLinks[i].label + "' button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab mdl-button--colored' ><i class='material-icons'>open_in_browser</i></button></a></center></div></div>")
+        var appLinks = d.data
+        var object = d.object[0]
+        var cardColor = d.object[0].cardColor
+        var textColor = d.object[0].textColor
+        var buttonColor = d.object[0].buttonColor
+        var arrayLength = appLinks.length
+        for (var i = 0; i < arrayLength; i++) {
+          $("#apssBody").append("<div class='mdl-card mdl-shadow--2dp demo-card-square'><div style='background-color: black; background: url(" + appLinks[i].logoUrl + ");  background-position: center; background-repeat:no-repeat;;'class='mdl-card__title mdl-card--expand'><h5 class='mdl-card__title-text' style='color: #B38D53'>" + appLinks[i].label + "</h5></div><div class='mdl-card__supporting-text'><center><a href='" + appLinks[i].linkUrl + "' id='link1'><id='" + appLinks[i].label + "' button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab mdl-button--colored' ><i class='material-icons'>open_in_browser</i></button></a></center></div></div>")
 
-            $(".mdl-card__supporting-text").css("background-color", cardColor)
-            $(".mdl-card__supporting-text").css("color", buttonColor)
-            console.log(buttonColor)
-            $(".mdl-button--fab.mdl-button--colored").css("color", "white")
-            $(".mdl-button--fab.mdl-button--colored").css("background-color", buttonColor)
-            $(".mdl-card__title-text").css("color", buttonColor)
-            }
+          $(".mdl-card__supporting-text").css("background-color", cardColor)
+          $(".mdl-card__supporting-text").css("color", buttonColor)
+          console.log(buttonColor)
+          $(".mdl-button--fab.mdl-button--colored").css("color", "white")
+          $(".mdl-button--fab.mdl-button--colored").css("background-color", buttonColor)
+          $(".mdl-card__title-text").css("color", buttonColor)
+        }
 
 
 
-  })
+      })
 
-                }
-            });
+    }
+  });
 
 </script>
 
 
-  {{>apps}}
+{{>apps}}
 
 {{/if}}
 
@@ -520,184 +530,169 @@ var signIn = new OktaSignIn({
 </template>
 
 <template name="login">
-<div id="sign-in-container"></div>
-<script>
+  <div id="sign-in-container"></div>
+  <script>
 
-var authClient = new OktaAuth({
+  var authClient = new OktaAuth({
     url: 'https://vanbeektech.okta.com',
     clientId: '0oa43ju51wQSUcS6b1t7',
     redirectUri: 'http://localhost:3000/authorization-code/callback'
-});
+  });
 
-if(authClient.tokenManager.get('tokens') != null){
-console.log(authClient.tokenManager.get('tokens'))
+  if(authClient.tokenManager.get('tokens') != null){
+    console.log(authClient.tokenManager.get('tokens'))
 
-}
+  }
 
 
 
-Meteor.subscribe("authObjects");
+  Meteor.subscribe("authObjects");
 
-var signInValuesClientId  = "no value"
-var signInValuesUrl = "no value"
+  var signInValuesClientId  = "no value"
+  var signInValuesUrl = "no value"
 
-Meteor.subscribe("authObjects");
+  Meteor.subscribe("authObjects");
 
 
 
   $(document).on('submit', '#oktaAuthObjects', function(e){
-  e.preventDefault()
-  if(OktaAppConfigurations.find().fetch().length < 0){
-    console.log("addding the files duuuuuuuuuuuuuuuuude")
+    e.preventDefault()
+    if(OktaAppConfigurations.find().fetch().length < 0){
+      console.log("addding the files duuuuuuuuuuuuuuuuude")
 
 
-    OktaAppConfigurations.insert({clientId: $(e.target).children()[1].value, url: $(e.target).children()[2].value})
+      OktaAppConfigurations.insert({clientId: $(e.target).children()[1].value, url: $(e.target).children()[2].value})
 
 
 
 
-  } else {
+    } else {
 
-    console.log("records added")
-    var firstId = OktaAppConfigurations.find().fetch()[0]._id;
+      console.log("records added")
+      var firstId = OktaAppConfigurations.find().fetch()[0]._id;
       if( $(e.target).children()[2].value != undefined){
         OktaAppConfigurations.update({_id : firstId},{$set:{url: $(e.target).children()[2].value}});
       }
 
       if($(e.target).children()[1].value  != undefined){
-          OktaAppConfigurations.update({_id : firstId},{$set:{clientId: $(e.target).children()[1].value}});
+        OktaAppConfigurations.update({_id : firstId},{$set:{clientId: $(e.target).children()[1].value}});
 
       }
 
+    }
+
+    console.log(OktaAppConfigurations.find().fetch()[0])
+
+  });
+
+  if(OktaAppConfigurations.find().fetch().length > 0){
+    console.log(OktaAppConfigurations.find().fetch()[0])
+
+    var authObject = OktaAppConfigurations.find().fetch()[0]
+    var signInValuesClientId = authObject.clientId
+    var signInValuesUrl = authObject.url
+
+
   }
 
-  console.log(OktaAppConfigurations.find().fetch()[0])
 
-});
+  console.log("url:" + signInValuesUrl)
+  console.log("clientId:" + signInValuesClientId)
 
-if(OktaAppConfigurations.find().fetch().length > 0){
-  console.log(OktaAppConfigurations.find().fetch()[0])
+  var signIn = new OktaSignIn({
+    baseUrl: "https://vanbeektech.okta.com",
+    logo: '/userLogin.png',
+    clientId: '0oa43ju51wQSUcS6b1t7',
+    redirectUri: 'http://localhost:3000/authorization-code/callback',
+    authParams: {
+      // display: 'page',
+      responseType: ['code', 'token'],
+      scopes: ['openid', 'email', 'profile', 'address', 'phone', 'groups', 'offline_access']
+    }
+  });
 
-  var authObject = OktaAppConfigurations.find().fetch()[0]
-  var signInValuesClientId = authObject.clientId
-  var signInValuesUrl = authObject.url
+  //replace values of baseurl, client id , and whatever redirect uri you use
 
-
-}
-
-
-console.log("url:" + signInValuesUrl)
-console.log("clientId:" + signInValuesClientId)
-
-var signIn = new OktaSignIn({
-  baseUrl: "https://vanbeektech.okta.com",
-  logo: '/userLogin.png',
-  clientId: '0oa43ju51wQSUcS6b1t7',
-  redirectUri: 'http://localhost:3000/authorization-code/callback',
-  authParams: {
-// display: 'page',
-  responseType: ['code', 'token'],
-  scopes: ['openid', 'email', 'profile', 'address', 'phone', 'groups', 'offline_access']
-}
-});
-
-//replace values of baseurl, client id , and whatever redirect uri you use
-
-var authClient = new OktaAuth({
+  var authClient = new OktaAuth({
     url: 'https://vanbeektech.okta.com',
     clientId: '0oa43ju51wQSUcS6b1t7',
     redirectUri: 'http://localhost:3000/authorization-code/callback'
-});
+  });
 
 
-function IdPAuth() {
+  function IdPAuth() {
     var options = {
-          scopes: ['openid', 'email', 'profile'],
-            responseType: 'token',
-            idp: '0oa38fseusRyzxVKf1t7',
-            redirectUri: 'http://localhost:3000/authorization-code/callback'
-        };
-   var token = authClient.token.getWithRedirect(options)
-       signIn.tokenManager.add('my_access_token', res);
-         signIn.tokenManager.add('my_access_token', response);
-
-}
-
-
-
-
-
-
-
-signIn.renderEl(
-  // Assumes there is an empty element on the page with an id of 'osw-container'
-  {el: '#sign-in-container'},
-
-  function success(res) {
-    console.log("#########################")
-    console.log(res)
-    console.log("#########################")
-    if (res.status === 'SUCCESS') {
-
-
-      if (res.type === 'SESSION_STEP_UP') {
-
-        return;
-      } else {
-
-
-      }
-
-
-
-      console.log(signIn.tokenManager.get('my_access_token'))
-      // window.location.href = "https://vanbeektech.okta.com"
-
-
-
-
-      return;
-    }
-
-  },
-
-  function error(err) {
+      scopes: ['openid', 'email', 'profile'],
+      responseType: 'token',
+      idp: '0oa38fseusRyzxVKf1t7',
+      redirectUri: 'http://localhost:3000/authorization-code/callback'
+    };
+    var token = authClient.token.getWithRedirect(options)
+    signIn.tokenManager.add('my_access_token', res);
+    signIn.tokenManager.add('my_access_token', response);
 
   }
-);
-
-$.ajax({
-  url: '/styleObject',
-  type: 'GET',
-  dataType: 'json',
-})
-.done(function(data) {
-  console.log("success");
-   var cardColor = data[0].cardColor
-   $(".auth-content").css("background-color", cardColor);
-   $("#okta-sign-in .button-primary").css("color", cardColor)
-
-})
-.fail(function(data) {
-  console.log("error");
-  console.log(data)
-
-})
-.always(function() {
-  console.log("complete");
-});
-
-setInterval(function(){
-
-console.log($("#input29").val())
-if($("#input29").val() == "andrew.vanbeek@samsung.com"){
-
-IdPAuth()
-
-}
 
 
- }, 1000);
+
+
+
+
+
+  signIn.renderEl(
+    // Assumes there is an empty element on the page with an id of 'osw-container'
+    {el: '#sign-in-container'},
+
+    function success(res) {
+      console.log(res)
+      if (res.status === 'SUCCESS') {
+        if (res.type === 'SESSION_STEP_UP') {
+          return;
+        } else {
+        }
+        console.log(signIn.tokenManager.get('my_access_token'))
+        return;
+      }
+
+    },
+
+    function error(err) {
+
+    }
+  );
+
+  $.ajax({
+    url: '/styleObject',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    console.log("success");
+    var cardColor = data[0].cardColor
+    $(".auth-content").css("background-color", cardColor);
+    $("#okta-sign-in .button-primary").css("color", cardColor)
+
+  })
+  .fail(function(data) {
+    console.log("error");
+    console.log(data)
+
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
+  setInterval(function(){
+
+    console.log($("#input29").val())
+    if($("#input29").val() == "andrew.vanbeek@samsung.com"){
+
+      IdPAuth()
+
+    }
+
+
+  }, 1000);
 
 
 
@@ -708,11 +703,11 @@ IdPAuth()
 
 <template name="apps">
 
-<!-- Square card -->
-<br><br><br><br>
-<div id="apssBody" class="container">
+  <!-- Square card -->
+  <br><br><br><br>
+  <div id="apssBody" class="container">
 
-     {{#if appsTab}}
+    {{#if appsTab}}
 
     {{/if}}
 
@@ -724,10 +719,10 @@ IdPAuth()
 
   <main class="mdl-layout__content">
     <form action="/action_page.php">
-    Select your favorite color:
-    <input type="color" name="favcolor" value="#ff0000">
-    <input type="submit">
-  </form>
+      Select your favorite color:
+      <input type="color" name="favcolor" value="#ff0000">
+      <input type="submit">
+    </form>
   </main>
 
 

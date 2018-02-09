@@ -45,27 +45,3 @@
   }
 
   .material-icons.md-24 { font-size: 50px; }
-
-
-  #appsBody {
-    width: 100%;
-    height: 100%;
-  }
-
-  .mdl-card__supporting-text{
-    background-color: #0B0906;
-    color: #B38D53;
-  }
-
-  .mdl-card__actions {
-    background-color: black;
-
-  }
-
-    .mdl-button--fab.mdl-button--colored {
-      background-color: #B38D53;
-    }
-
-    h5 {
-      color: black;
-    }

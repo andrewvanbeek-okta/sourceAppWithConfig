@@ -99,8 +99,8 @@ Picker.route('/register', function(params, req, res, next){
 
     var response = {data: result.data}
 
-    var something = JSON.stringify(result.data)
-      res.end(JSON.stringify(response));
+      console.log(response)
+      res.end(JSON.stringify(result.data));
 })
 
 Picker.route('/postAuth', function(params, req, res, next){

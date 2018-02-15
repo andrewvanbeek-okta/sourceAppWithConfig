@@ -29,13 +29,13 @@ console.log(userId)
 
 
 
-var route = "https://vanbeektech.okta.com/api/v1/users/" + userId + "/appLinks"
+var route = Meteor.settings.public.oktaUrl + "/api/v1/users/" + userId + "/appLinks"
 
 var result = Meteor.http.get(route, {
 
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        "Authorization": "SSWS 00FbSUcF4Ud2hMUNtjDQj-Jd94HQTavm284x0D7aKu"// replace with SWSS your Api Token
+        "Authorization": 'SSWS' + Meteor.settings.apiToken// replace with SWSS your Api Token
       }
     });
 
@@ -80,20 +80,19 @@ Picker.route('/register', function(params, req, res, next){
     "lastName": params.query.lastname,
     "email": params.query.email,
     "login": params.query.email,
-    "mobilePhone": params.query.phonenumber,
-    "zipcode": params.query.zipcode
+    "mobilePhone": params.query.phonenumber
   },
   "credentials": {
     "password" : { "value": params.query.password }
   }
 }
-  var route = "https://vanbeektech.okta.com/api/v1/users?activate=true"
+  var route =  Meteor.settings.public.oktaUrl + "/api/v1/users?activate=true"
   var result = Meteor.http.post(route, {
         data: data,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          "Authorization": "SSWS 00FbSUcF4Ud2hMUNtjDQj-Jd94HQTavm284x0D7aKu"// replace with SWSS your Api Token
+          "Authorization": 'SSWS' + Meteor.settings.apiToken// replace with SWSS your Api Token
         }
       });
 

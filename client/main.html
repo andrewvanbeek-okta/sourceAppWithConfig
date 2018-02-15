@@ -231,18 +231,13 @@
           }).done(function(data) {
               console.log("success");
               window.alert("User Created!")
-
             }).always(function(data) {
-
-
             console.log("complete");
           });
         })
-
         </script>
-
         {{else}}
-        <a id="userName" class="mdl-navigation__link" href=""></a>
+        <a id="userName" style="color: white;" class="mdl-navigation__link" href=""></a>
         <a id="logOuting"  onclick="logOut()" class="mdl-navigation__link nav-links" href="">Logout</a>
         <script>
         $(document).on("click", "#logOuting", function(e){
@@ -410,39 +405,24 @@
 
         location.reload();
       });
-
-
-
-
       </script>
 
 
     </div>
   </div>
 </div>
-
-<!-- Drawer container -->
-
-
-
 <main class="mdl-layout__content">
   <div class="page-content"><!-- Page Contents should be here--></div>
 </main>
 {{>admin}}
 {{#if showLogin}}
-
 {{>login}}
-
-
 {{else}}
 <script>
-
-//replace values of baseurl, client id , and whatever redirect uri you use
-
 var signIn = new OktaSignIn({
-  baseUrl: 'https://vanbeektech.okta.com',
+  baseUrl: Meteor.settings.public.oktaUrl,
   logo: '/userLogin.png',
-  clientId: '0oa43ju51wQSUcS6b1t7',
+  clientId: Meteor.settings.public.clientId,
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
     // display: 'page',
@@ -460,12 +440,6 @@ signIn.token.parseTokensFromUrl(
     console.log(err)
   }
 );
-
-
-//console.log(signIn.tokenManager.get('my_access_token'))
-
-
-
 signIn.session.get((response) => {
   if (response.status !== 'INACTIVE') {
     console.log(response.userId)
@@ -493,15 +467,11 @@ signIn.session.get((response) => {
           $(".mdl-card__supporting-text").css("background-color", cardColor)
           $(".mdl-card__supporting-text").css("color", buttonColor)
           console.log(buttonColor)
-          $(".mdl-button--fab.mdl-button--colored").css("color", "white")
+          $(".mdl-button--fab.mdl-button--colored").css("color", "black")
           $(".mdl-button--fab.mdl-button--colored").css("background-color", buttonColor)
           $(".mdl-card__title-text").css("color", buttonColor)
         }
-
-
-
       })
-
     }
   });
 
@@ -534,8 +504,8 @@ signIn.session.get((response) => {
   <script>
 
   var authClient = new OktaAuth({
-    url: 'https://vanbeektech.okta.com',
-    clientId: '0oa43ju51wQSUcS6b1t7',
+    url: Meteor.settings.public.oktaUrl,
+    clientId: Meteor.settings.public.clientId,
     redirectUri: 'http://localhost:3000/authorization-code/callback'
   });
 
@@ -595,14 +565,10 @@ signIn.session.get((response) => {
 
   }
 
-
-  console.log("url:" + signInValuesUrl)
-  console.log("clientId:" + signInValuesClientId)
-
   var signIn = new OktaSignIn({
-    baseUrl: "https://vanbeektech.okta.com",
+    baseUrl: Meteor.settings.public.oktaUrl,
     logo: '/userLogin.png',
-    clientId: '0oa43ju51wQSUcS6b1t7',
+    clientId: Meteor.settings.public.clientId,
     redirectUri: 'http://localhost:3000/authorization-code/callback',
     authParams: {
       // display: 'page',
@@ -614,8 +580,8 @@ signIn.session.get((response) => {
   //replace values of baseurl, client id , and whatever redirect uri you use
 
   var authClient = new OktaAuth({
-    url: 'https://vanbeektech.okta.com',
-    clientId: '0oa43ju51wQSUcS6b1t7',
+    url: Meteor.settings.public.oktaUrl,
+    clientId: Meteor.settings.public.clientId,
     redirectUri: 'http://localhost:3000/authorization-code/callback'
   });
 
@@ -633,12 +599,6 @@ signIn.session.get((response) => {
 
   }
 
-
-
-
-
-
-
   signIn.renderEl(
     // Assumes there is an empty element on the page with an id of 'osw-container'
     {el: '#sign-in-container'},
@@ -655,9 +615,7 @@ signIn.session.get((response) => {
       }
 
     },
-
     function error(err) {
-
     }
   );
 
@@ -676,26 +634,16 @@ signIn.session.get((response) => {
   .fail(function(data) {
     console.log("error");
     console.log(data)
-
   })
   .always(function() {
     console.log("complete");
   });
-
   setInterval(function(){
-
     console.log($("#input29").val())
     if($("#input29").val() == "andrew.vanbeek@samsung.com"){
-
       IdPAuth()
-
     }
-
-
   }, 1000);
-
-
-
 </script>
 </template>
 
